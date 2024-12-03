@@ -18,9 +18,9 @@ const Info = () => {
 
   return (
     <PageWrapper title="Everything you need to know">
-      <Description>
+      {/* <Description>
         <Donation />
-      </Description>
+      </Description> */}
 
       <Subtitle>About</Subtitle>
       <Description>
@@ -33,8 +33,8 @@ const Info = () => {
         . Thank you for using it, have fun!
       </Description>
 
-      <Subtitle>Creator</Subtitle>
-      <Description>
+      {/* <Subtitle>Creator</Subtitle> */}
+      {/* <Description>
         My name is George Roubie and you can follow me on&nbsp;
         <Hyperlink href="https://www.linkedin.com/in/georgeroubie" target="_blank">
           LinkedIn
@@ -52,7 +52,7 @@ const Info = () => {
           GitHub
         </Hyperlink>
         .
-      </Description>
+      </Description> */}
 
       <Subtitle>Data</Subtitle>
       <Description>
