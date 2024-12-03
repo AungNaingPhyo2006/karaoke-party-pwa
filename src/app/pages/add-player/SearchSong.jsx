@@ -48,6 +48,7 @@ const SearchSong = ({ disabled, save, setSongUrl }) => {
   const [message, setMessage] = useState(null);
   const [videoList, setVideoList] = useState([]);
 
+  console.log('Video List=>,', videoList)
   useEffect(() => {
     songInputRef?.current.focus();
   }, []);

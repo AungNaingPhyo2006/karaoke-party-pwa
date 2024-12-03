@@ -13,7 +13,7 @@ const Game = () => {
   const { state, deletePlayer, makePlayerActive } = useContext(AppContext);
   const [shuffle, setShuffle] = useState(state.playersList.length > 1);
   const [showNext, setShowNext] = useState(false);
-
+  console.log('PlayerList=>', state.playersList)
   useEffect(() => {
     let timeout;
     if (shuffle) {
@@ -53,6 +53,7 @@ const Game = () => {
   }
 
   function openSong() {
+    //to navigate another screen, and play yotube video using  react player
     window.open(getActivePlayer().song, '_blank');
     setShowNext(true);
   }
