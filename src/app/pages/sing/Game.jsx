@@ -52,10 +52,17 @@ const Game = () => {
     return state.playersList.find((player) => !player.active);
   }
 
+  // function openSong() {
+  //   //to navigate another screen, and play yotube video using  react player
+  //   window.open(getActivePlayer().song, '_blank');
+  //   setShowNext(true);
+  // }
   function openSong() {
-    //to navigate another screen, and play yotube video using  react player
-    window.open(getActivePlayer().song, '_blank');
-    setShowNext(true);
+    const activePlayer = getActivePlayer();
+    if (activePlayer && activePlayer.song) {
+      navigate('/video-player', { state: { videoUrl: activePlayer.song } });
+      setShowNext(true);
+    }
   }
 
   function handleNext() {

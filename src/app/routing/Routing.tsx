@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import RoutingLoader from './Loader';
 import Play from '../pages/play';
+import VideoPlayer from '../pages/video-player/VideoPlayer';
 
 // Lazy load pages
 const AddPlayer = lazy(() => import('../pages/add-player'));
@@ -34,6 +35,14 @@ const Routing = () => {
         element={
           <RoutingLoader>
             <Sing />
+          </RoutingLoader>
+        }
+      />
+       <Route
+        path="/video-player"
+        element={
+          <RoutingLoader>
+            <VideoPlayer />
           </RoutingLoader>
         }
       />
