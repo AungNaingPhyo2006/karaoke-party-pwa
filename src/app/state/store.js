@@ -1,10 +1,12 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { getSavedPlayersList, savePlayersList, saveThemeSelection } from '../helpers/storage';
 import { getCurrentTheme } from '../theme/themes/helpers';
 import * as actionTypes from './actions';
 import { appReducer } from './reducer';
 
 function useAppState() {
+  const [activePlayers, setActivePlayers] = useState([]);
+
   const [state, dispatch] = useReducer(appReducer, {
     theme: getCurrentTheme(),
     playersList: getSavedPlayersList(),
@@ -31,6 +33,10 @@ function useAppState() {
     setState(actionTypes.MAKE_PLAYER_ACTIVE, id);
   }
 
+  function removePlayer(playerId) {
+    setActivePlayers((prev) => prev.filter((player) => player.id !== playerId));
+  }
+
   // Sync state with local storage
   useEffect(() => {
     savePlayersList(state.playersList);
@@ -41,6 +47,7 @@ function useAppState() {
     setTheme,
     addPlayer,
     deletePlayer,
+    removePlayer,
     makePlayerActive,
   };
 }

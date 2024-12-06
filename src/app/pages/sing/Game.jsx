@@ -60,8 +60,14 @@ const Game = () => {
   function openSong() {
     const activePlayer = getActivePlayer();
     if (activePlayer && activePlayer.song) {
-      navigate('/video-player', { state: { videoUrl: activePlayer.song } });
+      // First, show the NEXT PLAYER button
       setShowNext(true);
+  
+      setTimeout(() => {
+        navigate('/video-player', { state: { videoUrl: activePlayer.song, playerId: activePlayer.id } });
+      }, 1000); 
+    } else {
+      console.error('No active player or song found!');
     }
   }
 

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components';
 import Button from '../../components/form-elements/Button';
+import { AppContext } from '../../state/Context';
 
 const PlayerWrapper = styled.div`
   display: flex;
@@ -23,20 +24,37 @@ const ExitButton = styled(Button)`
 const VideoPlayer = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { videoUrl } = location.state || {};
-
+  const { videoUrl, playerId } = location.state || {};
+  const { state, deletePlayer, makePlayerActive } = useContext(AppContext);
   if (!videoUrl) {
     return <p>Video URL is not available.</p>;
   }
 
-  function goToHome() {
-    navigate('/');
+  function getActivePlayer() {
+    return state.playersList.find((player) => player.active);
   }
 
+  function getInActivePlayer() {
+    return state.playersList.find((player) => !player.active);
+  }
+
+  const handleExit = () => {
+    const activePlayer = getActivePlayer();
+    const inactivePlayer = getInActivePlayer();
+
+    if (activePlayer) {
+      makePlayerActive(inactivePlayer.id); 
+    }
+    navigate('/');
+  };
+
+  // function goToHome() {
+  //   navigate('/');
+  // }
   return (
     <PlayerWrapper>
-      <ReactPlayer url={videoUrl} controls width="80%" height="80%" />
-      <ExitButton text="Exit" onClick={goToHome} />
+      <ReactPlayer url={videoUrl} controls width="100%" height="100%" />
+      <ExitButton text="Exit" onClick={handleExit} />
     </PlayerWrapper>
   );
 };
